@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Surprise For You ❤️</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Ambient Particle Canvas (Runs globally for soft glowing effects) -->
+    <canvas id="ambient-canvas"></canvas>
+
+    <!-- FLOATING BACKGROUND MUSIC PLAYER -->
+    <div class="music-player-container" id="music-player">
+        <button class="music-toggle-btn" id="music-toggle-btn" aria-label="Toggle Background Music" title="Play / Pause Music">
+            <span class="music-icon vinyl-icon">🎵</span>
+            <span class="music-waves">
+                <span></span><span></span><span></span>
+            </span>
+        </button>
+        <!-- AUDIO SOURCES (Nestle Paradise - Eshra Benna) -->
+        <audio id="bg-audio" loop preload="auto">
+            <source src="assets/audio/background.mp3" type="audio/mpeg">
+            <source src="assets/audio/eshra-benna.mp3" type="audio/mpeg">
+            <source src="assets/audio/عشرة بيننا.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- 1. LOCKED COUNTDOWN SCREEN -->
+    <div id="locked-screen" class="locked-screen-overlay">
+        <div class="locked-content">
+            <div class="lock-heart-badge">
+                <div class="lock-icon">🔒</div>
+            </div>
+            
+            <h1 class="locked-heading">Something special is waiting for you...</h1>
+            <p class="locked-subtext">Counting down to a very special moment</p>
+
+            <!-- LIVE COUNTDOWN DISPLAY -->
+            <div class="countdown-timer" id="countdown-timer">
+                <div class="timer-box">
+                    <span class="timer-value" id="days">00</span>
+                    <span class="timer-label">Days</span>
+                </div>
+                <div class="timer-colon">:</div>
+                <div class="timer-box">
+                    <span class="timer-value" id="hours">00</span>
+                    <span class="timer-label">Hours</span>
+                </div>
+                <div class="timer-colon">:</div>
+                <div class="timer-box">
+                    <span class="timer-value" id="minutes">00</span>
+                    <span class="timer-label">Minutes</span>
+                </div>
+                <div class="timer-colon">:</div>
+                <div class="timer-box">
+                    <span class="timer-value" id="seconds">00</span>
+                    <span class="timer-label">Seconds</span>
+                </div>
+            </div>
+
+            <p class="locked-footer-msg">Come back when the time is right ❤️</p>
+        </div>
+    </div>
+
+    <!-- MAIN UNLOCKED WEBSITE CONTENT -->
+    <div id="main-content" class="main-content-hidden">
+        
+        <!-- 2. VIDEO INTRO SECTION -->
+        <section id="intro-video-section" class="section video-section">
+            <div class="container text-center">
+                <span class="section-tagline">Before anything else...</span>
+                <h2 class="section-title">There is something I want you to see ❤️</h2>
+
+                <!-- CINEMATIC VIDEO CONTAINER -->
+                <div class="video-container" id="video-wrapper">
+                    <!-- VIDEO SOURCES -->
+                    <video id="intro-video" poster="assets/images/memory-1.jpg" preload="metadata" playsinline>
+                        <source src="assets/video/intro.mp4" type="video/mp4">
+                        <source src="assets/video/WhatsApp Video 2026-10-02 at 6.37.03 PM.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                    
+                    <!-- CUSTOM VIDEO OVERLAY & CONTROLS -->
+                    <div class="video-play-overlay" id="video-overlay">
+                        <button class="big-play-btn" id="big-play-btn" aria-label="Play Intro Video">
+                            <span class="play-triangle">▶</span>
+                        </button>
+                    </div>
+
+                    <div class="video-controls" id="video-controls">
+                        <button class="control-btn" id="play-pause-btn" title="Play/Pause">▶</button>
+                        <div class="progress-bar-container" id="progress-container">
+                            <div class="progress-filled" id="progress-bar"></div>
+                        </div>
+                        <span class="time-display" id="time-display">0:00 / 0:00</span>
+                        <button class="control-btn" id="mute-btn" title="Mute/Unmute">🔊</button>
+                        <button class="control-btn" id="fullscreen-btn" title="Fullscreen">⛶</button>
+                    </div>
+                </div>
+
+                <!-- VIDEO FALLBACK CONTINUATION BUTTON -->
+                <div class="video-continue-box">
+                    <button id="btn-continue-from-video" class="btn btn-primary">
+                        Continue to Our Memories &darr;
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. MEMORIES INTRODUCTION SECTION -->
+        <section id="memories-section" class="section memories-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tagline">Our Memories</span>
+                    <h2 class="section-title">Some moments deserve to be remembered forever.</h2>
+                    <p class="section-desc">A small gallery of the times that bring the biggest smiles.</p>
+                </div>
+
+                <!-- PHOTO GALLERY GRID (POLAROID & MODERN HYBRID) -->
+                <div class="memories-grid">
+                    
+                    <!-- MEMORY ITEM 1 -->
+                    <!-- EDIT PHOTO, TITLE, DATE & CAPTION BELOW -->
+                    <div class="memory-card polaroid-card animate-on-scroll">
+                        <div class="card-image-wrap">
+                            <img src="assets/images//IMG_2348.jpg" alt="" class="memory-img" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title"></h3>
+                            <span class="card-caption">" اول يوم خروجه لينا"</span>
+                            <p class="card-text">انا فاكره ان ده كان اول يوم نخرج فيه ونروح بنها اه مكناش لوحدنا بس كنا فرحانين ان خرجنا برا طوخ سوا واخيرا كنا زي الاطفال الصغيره البتجيلهم لعبه  جديده 🥹❤️</p>
+                        </div>
+                    </div>
+
+                    <!-- MEMORY ITEM 2 -->
+                    <div class="memory-card modern-card animate-on-scroll">
+                        <div class="card-image-wrap">
+                            <img src="assets/images/IMG_2355.jpg" alt="" class="memory-img" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <p class="card-text">ده كان يوم خطوبتك مش مهم الشخص او اي الحصل المهم ان فرحت بيكي اوي ان شفتك عروسه ورقصنا وضحكنا وهيصنا  وكان يوم حلو جدا والله واتمنى ان اشوفك احلى عروسه واجي معاكي الكوافير ويبقى اسمي اخت العروسه 😂❤️ مع ان عارفهه ان دماغك ناشفه ومش عايزه تجوزي بس ان شاءالله اشوفك بيزنس ومن قد الدنيا وعروسه كمان❤️</p>
+                        </div>
+                    </div>
+
+                    <!-- MEMORY ITEM 3 -->
+                    <div class="memory-card polaroid-card animate-on-scroll">
+                        <div class="card-image-wrap">
+                            <img src="assets/images/IMG_2357.jpg" alt="" class="memory-img" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-caption">" عشوائيات الفصل"</span>
+                            <p class="card-text">صور الفصل المش بنخلص منها وتلاقي مستر إبراهيم بتاع العربي كل شويه يدينيا يحبيبه ركزو لسه فاكره لما وقفنا احنا الاتنين بسبب الكلام ومعايا صور له واحنا مغفلينه😭😭</p>
+                        </div>
+                    </div>
+
+                    <!-- MEMORY ITEM 4 -->
+                    <div class="memory-card modern-card animate-on-scroll">
+                        <div class="card-image-wrap">
+                            <img src="assets/images/IMG_2334.jpg" alt="" class="memory-img" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <p class="card-text">كان ساعتها خطوبه ياسمين وانا وانتي بقينا نقول نروح ولا منروحش وانتي تقولي لو جيتي هروح مجتيش مش هروح😭 وانا اقول نفس الكلام وفي الاخر انا فاكره ان واحده فينا قالت مش هتروح وبعدها اتقابلنا في خطوبه عادي واتصدمنا كدهون وغيرنا جو وضحكنا ورقصنا واتصورنا وكان يوم حلو عشان انتي كنتي هناك والله لو مكنتيش موجوده كنت هسلم وامشي ❤️ </p>
+                        </div>
+                    </div>
+
+                    <!-- MEMORY ITEM 5 -->
+                    <div class="memory-card polaroid-card animate-on-scroll">
+                        <div class="card-image-wrap">
+                            <img src="assets/images/IMG_2384.jpg" alt="" class="memory-img" loading="lazy">\
+                        </div>
+                        <div class="card-content">
+                            <span class="card-caption">" صوره متسربه من فيلم رعب"</span>
+                            <p class="card-text">انا معرفش الصوره كان يومها اي بس لفتت انظاري  😂غير الاستاذه هبه الطالعه تلعب في شعرها دي😂😂 مع ان مرايه الحمام معفنه بس كنا فرحانين وبنتصور  كاننا في موڤي استار 😭😭</p>
+                        </div>
+                    </div>
+
+                    <!-- MEMORY ITEM 6 -->
+                    <div class="memory-card modern-card animate-on-scroll">
+                        <div class="card-image-wrap">
+                            <img src="assets/images/IMG_2343.jpg" alt="" class="memory-img" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <p class="card-text">ده كان يوم ندوه النضافه 😂😂 لما جمعو كل البنات عشان يعلموهم النضافه تقريبا مفكرينا وسخين فاكره ان اصلا في اليوم ده مركزناش في حاجه  وانا ساعتها سبتك انتي وجنى ونمت وشغلناها صور بس طول الندوه 😭</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MEMORY TIMELINE SECTION -->
+        <section id="timeline-section" class="section timeline-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">The Timeline of Us</h2>
+                    <p class="section-desc">Key milestones in a friendship that means the world.</p>
+                </div>
+
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+
+                    <!-- TIMELINE ITEM 1 -->
+                    <!-- EDIT TIMELINE DATES & TEXTS BELOW -->
+                    <div class="timeline-item left animate-on-scroll">
+                        <div class="timeline-dot">✨</div>
+                        <div class="timeline-content glass-card">
+                            <h3 class="timeline-title">Frist Photo</h3>
+                            <img src="assets/images/IMG_2423.jpg" alt="Frist Photo" class="timeline-img" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- TIMELINE ITEM 2 -->
+                    <div class="timeline-item right animate-on-scroll">
+                        <div class="timeline-dot">💖</div>
+                        <div class="timeline-content glass-card">
+                            <h3 class="timeline-title">First Memory</h3>
+                            <p class="timeline-text">One of those moments we still talk about today. We realized we shared the exact same sense of humor and warmth.</p>
+                        </div>
+                    </div>
+
+                    <!-- TIMELINE ITEM 3 -->
+                    <div class="timeline-item left animate-on-scroll">
+                        <div class="timeline-dot">🌟</div>
+                        <div class="timeline-content glass-card">
+                            <h3 class="timeline-title">A Special Day</h3>
+                            <img src="assets/images/IMG_2424.png" alt="A Special Day" class="timeline-img" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- TIMELINE ITEM 4 -->
+                    <div class="timeline-item right animate-on-scroll">
+                        <div class="timeline-dot">💫</div>
+                        <div class="timeline-content glass-card">
+                            <h3 class="timeline-title">Today</h3>
+                            <p class="timeline-text">And somehow, after all the chapters we've written, we're still creating brand new memories every single day.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. PERSONAL MESSAGES SECTION -->
+        <section id="messages-section" class="section messages-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Things I Never Want You to Forget</h2>
+                    <p class="section-desc">Tap each letter card below to unfold a personal note from my heart.</p>
+                </div>
+
+                <div class="letters-grid">
+                    
+                    <!-- LETTER CARD 1: THANK YOU -->
+                    <!-- EDIT LETTER CONTENT IN DATA-ATTRIBUTES OR MODAL BELOW -->
+                    <div class="letter-card animate-on-scroll" data-category="Thank You" data-icon="💌" 
+                         data-message="شكرا ان حتى واحنا بعاد كنتي فكراني وبتساليني على دراستي ودروسي رغم ان مش بنتكلم بس بنسال على بعض كل فتره نطمن ومع ذالك مش بتزعلي او بعيده او ان مقصره معاكي بس الظروف وانتي عارفه👉🏻👈🏻">
+                        <div class="letter-seal">💌</div>
+                        <h3 class="letter-category">Thank You</h3>
+                        <p class="letter-preview">For always being there...</p>
+                        <span class="letter-action">Read Letter &rarr;</span>
+                    </div>
+
+                    <!-- LETTER CARD 4: PROMISE -->
+                    <div class="letter-card animate-on-scroll" data-category="A Promise" data-icon="🤝"
+                         data-message="اوعدك ان مهما عدت السنين ومهما الدنيا فرقتنا او بعدتنا  عن بعض مش هلاقي احسن منك والله  بعدنا تلت سنين ورجعنا تاني اهو واحسن من الاول اوعدك بردو ان لو حصل بينا اي مش هسيبك زعلانه مني يوم حتى عمرها محصلت قبل كده ولا هتحصل إن شاء الله ❤️❤️">
+                        <div class="letter-seal">🤝</div>
+                        <h3 class="letter-category">A Promise</h3>
+                        <p class="letter-preview">I will always be in your corner...</p>
+                        <span class="letter-action">Read Letter &rarr;</span>
+                    </div>
+
+                    <!-- LETTER CARD 5: NEVER CHANGE -->
+                    <div class="letter-card animate-on-scroll" data-category="One Thing I Hope Never Changes" data-icon="🌸"
+                         data-message="نفسي علاقتنا متتغيرش او تمل مع سنين انا معرفش تقربيليي ايي بظبط بقىى بنت عمي ولا عمتيي بس المهم علاقتنا احسن من الاتنين دول😂😂❤️ احنا اخوات مش صحاب والله وتعرفي شغفي ان اجي اداب او تجاره عشانك والله عشان نبقى سوا تاني ❤️❤️">
+                        <div class="letter-seal">🌸</div>
+                        <h3 class="letter-category">Never Change</h3>
+                        <p class="letter-preview">Stay extraordinary as you are...</p>
+                        <span class="letter-action">Read Letter &rarr;</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 7. PHOTO MOMENTS (DIGITAL SCRAPBOOK SECTION) -->
+        <section id="scrapbook-section" class="section scrapbook-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">خمسة في المية</h2>
+                </div>
+
+                <div class="scrapbook-canvas-wrap">
+                    
+                    <!-- SCRAPBOOK POLAROID 1 -->
+                    <!-- EDIT PHOTOS & HANDWRITTEN CAPTIONS BELOW -->
+                    <div class="scrapbook-item rotate-left animate-on-scroll">
+                        <div class="paper-tape tape-top-left"></div>
+                        <div class="scrapbook-frame">
+                            <img src="assets/images/IMG_2309.jpg" alt="" class="scrapbook-img" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- SCRAPBOOK POLAROID 2 -->
+                    <div class="scrapbook-item rotate-right animate-on-scroll">
+                        <div class="paper-tape tape-top-right"></div>
+                        <div class="scrapbook-frame">
+                            <img src="assets/images/IMG_2421.jpg" alt="" class="scrapbook-img" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- SCRAPBOOK POLAROID 3 -->
+                    <div class="scrapbook-item rotate-slight-left animate-on-scroll">
+                        <div class="paper-tape tape-center"></div>
+                        <div class="scrapbook-frame">
+                            <img src="assets/images/IMG_2366.jpg" alt="" class="scrapbook-img" loading="lazy">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. FINAL EMOTIONAL MESSAGE SECTION -->
+        <section id="final-section" class="section final-section">
+            <!-- BACKGROUND IMAGE OVERLAY -->
+            <div class="final-bg-wrap">
+                <img src="assets/images/final-bg.jpg" alt="Final background" class="final-bg-img">
+                <div class="final-overlay-gradient"></div>
+            </div>
+
+            <div class="container relative-z text-center">
+                <span class="final-lead-title">And after all these memories...</span>
+                
+                <div class="final-message-box glass-card">
+                    <!-- DYNAMIC TYPING / FADE-IN TEXT CONTAINER -->
+                    <p class="final-text-paragraph" id="final-typing-text">
+                        No matter where life takes us, how many years pass, or how far apart we might be, 
+                        you will always hold a place in my heart that no one else could ever fill. 
+                        Thank you for being my confidante, my partner in crime, and my truest best friend.
+                    </p>
+
+                    <!-- EDIT BEST FRIEND'S NAME BELOW -->
+                    <div class="signature-box">
+                        <span class="signature-subtitle">With all my love, always & forever</span>
+                        <h3 class="signature-name" id="recipient-name">To My Dearest Best Friend, Bibo</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div> <!-- END OF MAIN CONTENT -->
+
+    <!-- LETTER MODAL POPUP -->
+    <div id="letter-modal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-box letter-modal-paper">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Letter">&times;</button>
+            <div class="letter-header">
+                <span class="modal-seal" id="modal-seal-icon">💌</span>
+                <h3 class="modal-title" id="modal-category-title">Personal Note</h3>
+            </div>
+            <div class="letter-body">
+                <p id="modal-letter-content" class="modal-text"></p>
+            </div>
+            <div class="letter-footer text-center">
+                <span class="handwritten-sign">With all my love ❤️</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL FOR IMAGES -->
+    <div id="image-lightbox" class="modal-overlay" aria-hidden="true">
+        <div class="lightbox-container">
+            <button class="modal-close-btn lightbox-close" id="lightbox-close-btn" aria-label="Close Image">&times;</button>
+            <img src="" alt="Enlarged photo" id="lightbox-img" class="lightbox-img">
+            <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="js/script.js"></script>
+</body>
+</html>

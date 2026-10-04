@@ -1,0 +1,1205 @@
+/* ==========================================================================
+   ELEGANT BEST FRIEND MEMORY GIFT WEBSITE
+   COLOR THEME: DEEP BURGUNDY (النبيتي) & CHAMPAGNE GOLD
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS VARIABLES & REETS
+   -------------------------------------------------------------------------- */
+:root {
+    /* Color Palette: Rich Wine Burgundy & Champagne Gold */
+    --bg-dark: #120307;
+    --bg-burgundy-deep: #24060e;
+    --bg-burgundy-mid: #3b0916;
+    --bg-card: rgba(45, 8, 17, 0.75);
+    --bg-card-hover: rgba(65, 12, 25, 0.85);
+
+    --primary-burgundy: #7d1328;
+    --accent-wine: #a31c39;
+    --accent-rose-gold: #f4b3c2;
+    --accent-gold: #dfb15b;
+    --accent-gold-light: #f7e0b5;
+    
+    --text-heading: #fff6f8;
+    --text-body: #ebd3dc;
+    --text-muted: #bda4af;
+
+    --border-gold: rgba(223, 177, 91, 0.3);
+    --border-gold-glow: rgba(223, 177, 91, 0.6);
+    --border-light: rgba(255, 255, 255, 0.1);
+
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-handwritten: 'Caveat', cursive, sans-serif;
+
+    --box-shadow-card: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    --box-shadow-gold: 0 0 25px rgba(223, 177, 91, 0.25);
+    
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-body);
+    line-height: 1.65;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Background canvas */
+#ambient-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Layout Container */
+.container {
+    width: 90%;
+    max-width: 1140px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.relative-z {
+    position: relative;
+    z-index: 3;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   2. TYPOGRAPHY & SECTION HEADERS
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--text-heading);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.section {
+    padding: 100px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.section-header {
+    margin-bottom: 60px;
+}
+
+.section-tagline {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent-gold);
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--text-heading) 0%, var(--accent-gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-desc {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 32px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-wine) 0%, var(--primary-burgundy) 100%);
+    color: var(--text-heading);
+    border: 1px solid var(--border-gold);
+    box-shadow: 0 8px 25px rgba(125, 19, 40, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, var(--accent-wine) 30%, var(--accent-gold) 100%);
+    box-shadow: var(--box-shadow-gold);
+    border-color: var(--accent-gold);
+}
+
+/* Glass Card Component */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--box-shadow-card);
+    transition: all 0.35s ease;
+}
+
+.glass-card:hover {
+    border-color: var(--border-gold-glow);
+    box-shadow: var(--box-shadow-card), var(--box-shadow-gold);
+}
+
+/* --------------------------------------------------------------------------
+   3. FLOATING MUSIC PLAYER
+   -------------------------------------------------------------------------- */
+.music-player-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 10000;
+}
+
+.music-toggle-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    color: var(--accent-gold);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.music-toggle-btn:hover {
+    transform: scale(1.08);
+    border-color: var(--accent-gold-light);
+    box-shadow: var(--box-shadow-gold);
+}
+
+.music-icon {
+    font-size: 1.3rem;
+    transition: transform 0.5s ease;
+}
+
+.music-player-container.playing .vinyl-icon {
+    animation: spin 3s linear infinite;
+}
+
+.music-waves {
+    display: none;
+    position: absolute;
+    bottom: 8px;
+    gap: 3px;
+}
+
+.music-player-container.playing .music-waves {
+    display: flex;
+}
+
+.music-waves span {
+    width: 3px;
+    height: 10px;
+    background: var(--accent-gold);
+    border-radius: 2px;
+    animation: bounceWave 1s ease-in-out infinite alternate;
+}
+
+.music-waves span:nth-child(2) { animation-delay: 0.2s; }
+.music-waves span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes bounceWave {
+    0% { height: 4px; }
+    100% { height: 14px; }
+}
+
+/* --------------------------------------------------------------------------
+   4. LOCKED COUNTDOWN SCREEN
+   -------------------------------------------------------------------------- */
+.locked-screen-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: radial-gradient(circle at center, #3d0817 0%, #150308 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    transition: opacity 1.2s ease, filter 1.2s ease, visibility 1.2s ease;
+    overflow: hidden;
+    touch-action: none;
+}
+
+.locked-screen-overlay.unlocked {
+    opacity: 0;
+    filter: blur(20px);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.locked-content {
+    max-width: 650px;
+    width: 100%;
+    animation: fadeIn 1s ease forwards;
+}
+
+.lock-heart-badge {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 0 30px rgba(223, 177, 91, 0.3);
+    animation: pulseRing 2.5s infinite ease-in-out;
+}
+
+.locked-heading {
+    font-size: 2.6rem;
+    margin-bottom: 12px;
+    color: var(--text-heading);
+}
+
+.locked-subtext {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.countdown-timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.timer-box {
+    background: rgba(55, 9, 21, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-md);
+    padding: 20px 16px;
+    min-width: 95px;
+    box-shadow: var(--box-shadow-card);
+    transition: transform 0.3s ease;
+}
+
+.timer-box:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-gold);
+}
+
+.timer-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--accent-gold-light);
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.timer-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+}
+
+.timer-colon {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--accent-gold);
+    margin-top: -20px;
+}
+
+.locked-footer-msg {
+    font-size: 1.1rem;
+    color: var(--accent-rose-gold);
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   5. MAIN CONTENT WRAPPER & ANIMATIONS
+   -------------------------------------------------------------------------- */
+.main-content-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease 0.3s, visibility 1.5s ease 0.3s;
+}
+
+.main-content-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Scroll Animation Helper */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   6. VIDEO INTRO SECTION
+   -------------------------------------------------------------------------- */
+.video-section {
+    padding-top: 120px;
+}
+
+.video-container {
+    position: relative;
+    max-width: 520px;
+    width: 90%;
+    margin: 40px auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #000;
+    border: 1px solid var(--border-gold);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), var(--box-shadow-gold);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-container video {
+    width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    display: block;
+}
+
+/* Big Play Overlay */
+.video-play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 4, 9, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.4s ease;
+    z-index: 5;
+}
+
+.video-play-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.big-play-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--accent-wine);
+    border: 2px solid var(--accent-gold);
+    color: var(--accent-gold-light);
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 35px rgba(223, 177, 91, 0.4);
+    transition: all 0.3s ease;
+    padding-left: 6px;
+}
+
+.big-play-btn:hover {
+    transform: scale(1.12);
+    background: var(--primary-burgundy);
+    box-shadow: 0 0 50px rgba(223, 177, 91, 0.7);
+}
+
+/* Controls Bar */
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(18, 3, 7, 0.95), transparent);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 6;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-container:hover .video-controls,
+.video-controls:focus-within {
+    opacity: 1;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: var(--text-heading);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.control-btn:hover {
+    color: var(--accent-gold);
+}
+
+.progress-bar-container {
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-filled {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-wine), var(--accent-gold));
+    border-radius: 3px;
+    transition: width 0.1s linear;
+}
+
+.time-display {
+    font-size: 0.85rem;
+    color: var(--text-body);
+    font-variant-numeric: tabular-nums;
+}
+
+.video-continue-box {
+    margin-top: 30px;
+}
+
+/* --------------------------------------------------------------------------
+   7. MEMORIES SECTION & GALLERY
+   -------------------------------------------------------------------------- */
+.memories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.memory-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: var(--box-shadow-card);
+    display: flex;
+    flex-direction: column;
+}
+
+.memory-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: var(--accent-gold);
+    box-shadow: var(--box-shadow-card), var(--box-shadow-gold);
+}
+
+.card-image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.memory-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.memory-card:hover .memory-img {
+    transform: scale(1.08);
+}
+
+.memory-date {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(36, 6, 14, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-gold);
+    color: var(--accent-gold-light);
+    padding: 4px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.card-content {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    color: var(--text-body);
+    margin-bottom: 16px;
+    flex: 1;
+}
+
+.card-caption {
+    font-family: var(--font-handwritten);
+    font-size: 1.3rem;
+    color: var(--accent-rose-gold);
+    display: block;
+    margin-top: auto;
+}
+
+/* Polaroid Card Style */
+.polaroid-card {
+    background: #fdfbf7;
+    color: #2b1419;
+    padding: 16px 16px 24px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: none;
+}
+
+.polaroid-card .card-image-wrap {
+    border-radius: 2px;
+    margin-bottom: 16px;
+}
+
+.polaroid-card .card-title {
+    color: #3d0916;
+    font-family: var(--font-heading);
+}
+
+.polaroid-card .card-text {
+    color: #59353f;
+}
+
+.polaroid-card .card-caption {
+    color: #9e1b38;
+}
+
+/* --------------------------------------------------------------------------
+   8. MEMORY TIMELINE SECTION
+   -------------------------------------------------------------------------- */
+.timeline-section {
+    background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-burgundy-deep) 50%, var(--bg-dark) 100%);
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--accent-gold), var(--accent-wine), transparent);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 60px;
+    width: 50%;
+}
+
+.timeline-item.left {
+    left: 0;
+    padding-right: 45px;
+}
+
+.timeline-item.right {
+    left: 50%;
+    padding-left: 45px;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-burgundy-mid);
+    border: 2px solid var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 0 15px rgba(223, 177, 91, 0.4);
+    z-index: 5;
+}
+
+.timeline-item.left .timeline-dot {
+    right: -22px;
+}
+
+.timeline-item.right .timeline-dot {
+    left: -22px;
+}
+
+.timeline-content {
+    padding: 28px;
+}
+
+.timeline-date {
+    display: inline-block;
+    color: var(--accent-gold);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.timeline-title {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+.timeline-text {
+    font-size: 0.95rem;
+    color: var(--text-body);
+}
+
+.timeline-img {
+    width: 100%;
+    border-radius: var(--radius-sm);
+    margin-top: 16px;
+    border: 1px solid var(--border-gold);
+}
+
+/* --------------------------------------------------------------------------
+   9. PERSONAL MESSAGES (LETTERS) SECTION
+   -------------------------------------------------------------------------- */
+.letters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.letter-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-md);
+    padding: 32px 24px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: var(--box-shadow-card);
+}
+
+.letter-card:hover {
+    transform: translateY(-8px);
+    background: var(--bg-card-hover);
+    border-color: var(--accent-gold);
+    box-shadow: var(--box-shadow-card), var(--box-shadow-gold);
+}
+
+.letter-seal {
+    font-size: 2.8rem;
+    margin-bottom: 16px;
+    transition: transform 0.3s ease;
+}
+
+.letter-card:hover .letter-seal {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.letter-category {
+    font-size: 1.35rem;
+    margin-bottom: 10px;
+}
+
+.letter-preview {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.letter-action {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   10. THINGS I LOVE ABOUT YOU SECTION
+   -------------------------------------------------------------------------- */
+.qualities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.quality-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-md);
+    padding: 30px;
+    transition: all 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.quality-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-gold);
+    box-shadow: var(--box-shadow-gold);
+}
+
+.quality-icon {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+}
+
+.quality-title {
+    font-size: 1.35rem;
+    margin-bottom: 10px;
+    color: var(--accent-gold-light);
+}
+
+.quality-desc {
+    font-size: 0.95rem;
+    color: var(--text-body);
+}
+
+/* --------------------------------------------------------------------------
+   11. PHOTO SCRAPBOOK SECTION
+   -------------------------------------------------------------------------- */
+.scrapbook-canvas-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+    padding: 30px 10px;
+}
+
+.scrapbook-item {
+    position: relative;
+    transition: transform 0.4s ease;
+}
+
+.scrapbook-item:hover {
+    transform: rotate(0deg) scale(1.05) !important;
+    z-index: 10;
+}
+
+.rotate-left { transform: rotate(-4deg); }
+.rotate-right { transform: rotate(3deg); }
+.rotate-slight-left { transform: rotate(-2deg); }
+.rotate-slight-right { transform: rotate(4deg); }
+
+.scrapbook-frame {
+    background: #fcf9f2;
+    padding: 14px 14px 20px;
+    border-radius: 4px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.scrapbook-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.scrapbook-caption {
+    margin-top: 14px;
+    text-align: center;
+}
+
+.handwritten {
+    font-family: var(--font-handwritten);
+    font-size: 1.5rem;
+    color: #2b0b14;
+    display: block;
+    line-height: 1.2;
+}
+
+.scrapbook-date {
+    font-size: 0.75rem;
+    color: #7a5460;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 4px;
+}
+
+/* Paper Tape Graphic Effect */
+.paper-tape {
+    position: absolute;
+    width: 90px;
+    height: 26px;
+    background: rgba(235, 220, 195, 0.75);
+    border-left: 2px dashed rgba(0,0,0,0.1);
+    border-right: 2px dashed rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 2;
+}
+
+.tape-top-left { top: -10px; left: -10px; transform: rotate(-15deg); }
+.tape-top-right { top: -10px; right: -10px; transform: rotate(12deg); }
+.tape-center { top: -12px; left: 35%; transform: rotate(-3deg); }
+.tape-bottom-right { bottom: 10px; right: -15px; transform: rotate(45deg); }
+
+/* --------------------------------------------------------------------------
+   12. FINAL EMOTIONAL MESSAGE SECTION
+   -------------------------------------------------------------------------- */
+.final-section {
+    position: relative;
+    padding: 140px 0;
+    overflow: hidden;
+}
+
+.final-bg-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.final-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(4px) brightness(0.35);
+    transform: scale(1.05);
+}
+
+.final-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(36, 6, 14, 0.65) 0%, rgba(18, 3, 7, 0.95) 100%);
+}
+
+.final-lead-title {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    margin-bottom: 24px;
+    font-style: italic;
+}
+
+.final-message-box {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 40px;
+}
+
+.final-text-paragraph {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-heading);
+    margin-bottom: 30px;
+}
+
+.final-divider {
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+    margin: 30px 0;
+}
+
+.final-toast-heading {
+    font-size: 1.8rem;
+    color: var(--accent-gold-light);
+    margin-bottom: 40px;
+    line-height: 1.4;
+}
+
+.signature-box {
+    border-top: 1px solid var(--border-gold);
+    padding-top: 30px;
+}
+
+.signature-subtitle {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.signature-name {
+    font-family: var(--font-handwritten);
+    font-size: 2.8rem;
+    color: var(--accent-rose-gold);
+}
+
+/* Site Footer */
+.site-footer {
+    padding: 30px;
+    background: #0b0204;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-light);
+}
+
+/* --------------------------------------------------------------------------
+   13. MODALS (LETTERS & LIGHTBOX)
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background: rgba(15, 2, 5, 0.85);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    background: #fdfaf5;
+    color: #2b0b14;
+    max-width: 550px;
+    width: 100%;
+    border-radius: var(--radius-md);
+    padding: 40px 32px;
+    position: relative;
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+.modal-overlay.active .modal-box {
+    transform: scale(1) translateY(0);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #6b2636;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.letter-modal-paper {
+    border: 8px solid #f2e9dc;
+}
+
+.letter-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.modal-seal {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.modal-title {
+    font-size: 1.8rem;
+    color: #4a0c1a;
+}
+
+.modal-text {
+    font-family: var(--font-handwritten);
+    font-size: 1.65rem;
+    line-height: 1.5;
+    color: #380814;
+    margin-bottom: 30px;
+}
+
+.handwritten-sign {
+    font-family: var(--font-handwritten);
+    font-size: 1.6rem;
+    color: #8b1832;
+}
+
+/* Lightbox Modal */
+.lightbox-container {
+    max-width: 90vw;
+    max-height: 85vh;
+    text-align: center;
+    position: relative;
+}
+
+.lightbox-img {
+    max-width: 100%;
+    max-height: 75vh;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--accent-gold);
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+}
+
+.lightbox-caption {
+    margin-top: 14px;
+    color: var(--text-heading);
+    font-size: 1.1rem;
+}
+
+.lightbox-close {
+    color: #fff;
+    right: -10px;
+    top: -40px;
+}
+
+/* --------------------------------------------------------------------------
+   14. RESPONSIVE DESIGN (MOBILE & TABLET)
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .timeline-line {
+        left: 24px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px !important;
+        padding-right: 0 !important;
+    }
+
+    .timeline-item.right {
+        left: 0;
+    }
+
+    .timeline-item.left .timeline-dot,
+    .timeline-item.right .timeline-dot {
+        left: 2px;
+        right: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 1.85rem;
+    }
+
+    .locked-heading {
+        font-size: 1.8rem;
+    }
+
+    .timer-box {
+        min-width: 70px;
+        padding: 14px 10px;
+    }
+
+    .timer-value {
+        font-size: 1.9rem;
+    }
+
+    .timer-colon {
+        font-size: 1.8rem;
+    }
+
+    .final-message-box {
+        padding: 30px 20px;
+    }
+
+    .final-text-paragraph {
+        font-size: 1.05rem;
+    }
+
+    .final-toast-heading {
+        font-size: 1.4rem;
+    }
+
+    .signature-name {
+        font-size: 2.2rem;
+    }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
